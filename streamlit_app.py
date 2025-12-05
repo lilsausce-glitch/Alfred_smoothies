@@ -24,11 +24,9 @@ if ingredients_list:
             ingredients_string += fruit_chosen + ' '
         
     #st.write(ingredients_string)
-    
-    # ========== FIXED: Added name_on_order column to INSERT statement ==========
+  
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
             values ('"""+ ingredients_string + """','"""+ name_on_order+ """')"""
-    # ========== END FIX ==========
     
     #st.write(my_insert_stmt)  # Uncomment this line to debug SQL
     #st.stop()  # Comment out to allow the INSERT to execute
@@ -38,6 +36,4 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         
-        # ========== BONUS: Added name to success message ==========
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
-        # ========== END BONUS ==========
